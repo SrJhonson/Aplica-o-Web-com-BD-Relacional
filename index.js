@@ -3,7 +3,7 @@ const Login = {
         return {
             usuario: '',
             senha: '',
-            mensagem: '' 
+            mensagem: ''
         }
     },
     template: `
@@ -18,19 +18,32 @@ const Login = {
     methods: {
         fazerLogin() {
             if (this.usuario && this.senha) {
-                // Atualiza a mensagem
-                this.mensagem = 'Login realizado com sucesso!';
-                // Limpa os campos
-                this.usuario = '';
-                this.senha = '';
-                // Redireciona para a página index na pasta jogo após 3 segundos
-                setTimeout(() => {
-                    window.location.href = '/jogo/index.html';
-                }, 500);
+                fetch('/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        usuario: this.usuario,
+                        senha: this.senha
+                    })
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        this.mensagem = data;
+                        if (data === 'Login realizado com sucesso!') {
+                            this.usuario = '';
+                            this.senha = '';
+                            setTimeout(() => {
+                                window.location.href = '/jogo/index.html';
+                            }, 3000);
+                        }
+                    });
             } else {
                 this.mensagem = 'Por favor, preencha todos os campos.';
             }
         }
+
     }
 }
 
@@ -56,13 +69,29 @@ const Cadastro = {
     methods: {
         fazerCadastro() {
             if (this.nome && this.email && this.senha && this.confirmarSenha) {
-                alert('Cadastro criado com sucesso!');
-                this.nome = '';
-                this.email = '';
-                this.senha = '';
-                this.confirmarSenha = '';
+                fetch('/cadastro', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nome: this.nome,
+                        email: this.email,
+                        senha: this.senha
+                    })
+                })
+                    .then(response => response.text())
+                    .then(data => {
+                        this.mensagem = data;
+                        if (data === 'Cadastro realizado com sucesso!') {
+                            this.nome = '';
+                            this.email = '';
+                            this.senha = '';
+                            this.confirmarSenha = '';
+                        }
+                    });
             } else {
-                alert('Por favor, preencha todos os campos.');
+                this.mensagem = 'Por favor, preencha todos os campos.';
             }
         }
     }
