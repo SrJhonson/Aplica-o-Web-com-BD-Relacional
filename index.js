@@ -127,6 +127,7 @@ createApp({
                 const acaoAleatoria = acoes[Math.floor(Math.random() * acoes.length)];
                 this[acaoAleatoria](false);
                 this.verificarVida();
+                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
             },
             verificarVida() {
                 // Se a vida de qual quer um chegar a 0 cria-se um pop-up alertando o vencedor!!
@@ -134,10 +135,12 @@ createApp({
                     alert("Vilão Ganhou!! CONQUISTAMOS A LUAAA!!!!!");
                     this.recomecar();
                     this.limparLogs();
+                    this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
                 } else if (this.vilao.vida <= 0) {
                     alert("Herói Ganhou!! O BEM SEMPRE IRÁ VENCER!!!!!");
                     this.recomecar();
                     this.limparLogs();
+                    this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
                 }
             },
             recomecar() {
