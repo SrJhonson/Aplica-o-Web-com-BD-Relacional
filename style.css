@@ -1,59 +1,92 @@
-body {
-    font-family: Arial, sans-serif;
+body,
+html {
+    height: 100%;
     margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #16cccc;
+}
+
+ul{
+    list-style-type: none;
     padding: 0;
-    background-color: #f0f0f0;
 }
 
 #app {
     width: 100%;
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 1000px;
+    text-align: center;
+    display: flex;
+    flex-direction: row;
 }
 
-.componente {
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    padding: 20px;
-    background-color: #fff;
+.personagem {
+    background-color: white;
+    border: 2px solid #590f68;
     margin-bottom: 20px;
-}
-
-h1 {
-    color: #333;
-}
-
-p {
-    margin-bottom: 10px;
-}
-
-input {
-    width: 100%;
+    margin: 10px;
     padding: 10px;
-    box-sizing: border-box;
-    margin-bottom: 10px;
     border-radius: 5px;
-    border: 1px solid #ddd;
+    width: 300px;
+    height: 500px;
+}
+
+.acoes {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
 }
 
 button {
-    background-color: #007BFF;
-    color: #fff;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    padding: 10px 15px;
+    background-color: #761d9f;
+    color: whitesmoke;
     cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #1a355e;
 }
 
-
-.fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s;
+button:active {
+    transform: translateY(2px);
 }
 
-.fade-enter, .fade-leave-to {
-    opacity: 0;
+.barra-vida {
+    height: 32px;
+    background-color: #36e43c;
+    color: rgb(255, 255, 255);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    margin-bottom: 16px;
+}
+
+.sprite {
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
+}
+
+.vida-vermelha {
+    background-color: red;
+}
+
+.vida-amarela {
+    background-color: rgb(228, 228, 45);
+}
+
+.vida-verde {
+    background-color: #36e43c;
 }
