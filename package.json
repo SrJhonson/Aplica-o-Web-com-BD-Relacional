@@ -1,0 +1,12 @@
+{
+    "scripts": {
+        "build": "netlify deploy --prod"
+    },
+    "dependencies": {
+        "cors": "^2.8.5",
+        "express": "^4.19.2",
+        "netlify": "^13.1.17",
+        "serverless-http": "^3.2.0",
+        "sql": "^0.78.0"
+    }
+}
