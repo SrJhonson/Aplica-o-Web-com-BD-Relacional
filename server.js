@@ -3,7 +3,6 @@ const path = require('path');
 const sql = require('mssql');
 
 const app = express();
-const PORT = 8080;
 
 // Configuração do banco de dados
 const config = {
