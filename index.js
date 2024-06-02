@@ -1,5 +1,5 @@
 const { createApp } = Vue;
-const API_URL = 'https://aplicacaoweb-bdrelacional.netlify.app/';
+const API_URL = 'https://aplicacaoweb-bdrelacional.netlify.app';
 
 createApp({
     data() {
