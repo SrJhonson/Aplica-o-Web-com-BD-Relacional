@@ -1,6 +1,6 @@
 {
     "scripts": {
-        "build": "netlify deploy --prod"
+        
     },
     "dependencies": {
         "cors": "^2.8.5",
