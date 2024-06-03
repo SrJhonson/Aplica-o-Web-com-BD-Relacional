@@ -6,9 +6,12 @@ createApp({
         return {
             heroi: { vida: 100 },
             vilao: { vida: 100 },
+            aux: 1,
+            mensagemAcao: '',
             historico: [],
             acao: ''
         }
+
     },
     computed: {
         heroiVidaClasse() {
@@ -27,32 +30,27 @@ createApp({
         }
     },
     methods: {
-        adicionarLog(Historico) {
-            if (this.Historico.length >= 20) {
-                this.Historico.shift();
-            }
-            this.Historico.push(Historico);
-        },
-        limparLogs() {
-            this.Historico = [];
-        },
         atacar(isHeroi) {
+            let acao = isHeroi ? "Herói atacou" : "Vilão atacou";
             if (isHeroi) {
-                this.vilao.vida -= 10;
-                this.adicionarLog("O herói atacou!");
-                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-                // Adiciona uma chance de 1/3 do vilão revidar
-                if (Math.random() < 1 / 3) {
-                    this.adicionarLog("Contra ataque do vilão!");
-                    this.acaoVilao();
-                    this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-                }
+                this.vilao.vida = this.vilao.vida > 5 ? this.vilao.vida - 10 : 0;
+                this.historico.push("Herói atacou. Vida do vilão: " + this.vilao.vida);
+                this.acao = "Herói atacou"; 
+                console.log("Herói atacou");
+                this.acaoVilao();
+                this.aux = 1;
+                this.atualizarVidaNoBancoDeDados(this.heroi.vida, this.vilao.vida);
+                
             } else {
-                this.heroi.vida -= 20;
+                this.mensagemAcao = "Vilão atacou"; 
+                this.historico.push("Vilão atacou. Vida do herói: " + this.heroi.vida);
+                this.historico.acao = "Vilão atacou"; 
+                console.log("Vilão atacou");
+                this.heroi.vida = this.heroi.vida > 5 ? this.heroi.vida - 10 : 0;
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
             }
-            this.verificarVida();
             this.adicionarHistorico(acao);
+            this.verificarVida();
         },
         async atualizarVidaNoBancoDeDados(vidaHeroi, vidaVilao) {
             try {
@@ -72,60 +70,65 @@ createApp({
             }
         },
         defender(isHeroi) {
-            // Adiciona uma chance de 2/3 do heroi defender o ataque do vilão
-            if (Math.random() < 2 / 3) {
-                this.adicionarLog("Heroi defendeu!");
-                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-            } else {
-                this.adicionarLog("Defesa falhou!");
+            let acao = isHeroi ? "Herói defendeu" : "Vilão defendeu";
+            if (isHeroi) {
+                console.log("Herói defendeu");
                 this.acaoVilao();
-                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
+                this.historico.push("Herói defendeu.");
+                this.acao = "Herói defendeu"; 
+            } else {
+                this.mensagemAcao = "Vilão defendeu"; 
+                console.log("Vilão defendeu");
+                this.aux = 1; 
+                this.historico.push("Vilão defendeu.");
+                this.acao = "Vilão defendeu"; 
             }
-            this.verificarVida();
             this.adicionarHistorico(acao);
+            this.verificarVida();
         },
         usarPocao(isHeroi) {
-            // Recupera 15 de vida do herói
-            this.heroi.vida += 15;
-            // Limita a vida do herói a 100
-            if (this.heroi.vida > 100) {
-                this.heroi.vida = 100;
-                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-            }
-            this.adicionarLog("Herói usou poção!");
-            // Gera uma chance de 1/3 do vilão atacar e outra chance de 1/3 do vilão se curar em 10 de vida
-            if (Math.random() < 1 / 3) {
-                this.adicionarLog("Vilão atacou!");
+            let acao = isHeroi ? "Herói usou poção" : "Vilão usou poção";
+            if (isHeroi) {
+                this.acao = "Herói usou poção"; 
+                console.log("Herói usou poção");
+                this.heroi.vida = this.heroi.vida < 95 ? this.heroi.vida + 5 : 100;
+                this.aux = 1;
                 this.acaoVilao();
+                this.historico.push("Herói usou poção. Vida do herói: " + this.heroi.vida);
+                this.atualizarVidaNoBancoDeDados(this.heroi.vida, this.vilao.vida);
+            } else {
+                this.mensagemAcao = "Vilão usou poção"; 
+                this.acao = "Vilão usou poção"; 
+                console.log("Vilão usou poção");
+                this.vilao.vida = this.vilao.vida < 95 ? this.vilao.vida + 5 : 100;
+                this.historico.push("Vilão usou poção. Vida do vilão: " + this.vilao.vida);
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-            } else if (Math.random() < 2 / 3) {
-                this.adicionarLog("Vilão usou poção!");
-                this.vilao.vida += 10;
-                this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-                // Limita a vida do vilão a 100
-                if (this.vilao.vida > 100) {
-                    this.vilao.vida = 100;
-                    this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
-                }
             }
-            this.verificarVida();
             this.adicionarHistorico(acao);
+            this.verificarVida();
         },
         critico(isHeroi) {
             // Ataque crítico que causa o dobro do dano do ataque normal
+            let acao = isHeroi ? "Herói deu Critico" : "Vilão deu Critico";
             if (isHeroi) {
-                this.vilao.vida -= 20;
-                this.adicionarLog("O herói deu um golpe crítico!");
+                this.vilao.vida = this.vilao.vida > 10 ? this.vilao.vida - 20 : 0;
+                this.historico.push("Herói deu Critico. Vida do vilão: " + this.vilao.vida);
+                this.acao = "Herói deu Critico";
+                console.log("Herói deu Critico");
+                this.acaoVilao();
+                this.aux = 1;
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
                 // Adiciona uma chance de 1/3 do vilão revidar
                 if (Math.random() < 1 / 3) {
-                    this.adicionarLog("O vilão deu um golpe crítico!");
+                    this.historico.push("Vilão deu Critico. Vida do vilão: " + this.heroi.vida);
+                    this.acao = "Vilão deu Critico";
+                    console.log("Vilão deu Critico");
                     this.heroi.vida -= 30;
                     this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
                 }
             }
-            this.verificarVida();
             this.adicionarHistorico(acao);
+            this.verificarVida();
         },
         acaoVilao() {
             const acoes = ['atacar', 'defender', 'usarPocao', 'critico'];

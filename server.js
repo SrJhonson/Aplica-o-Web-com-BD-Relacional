@@ -42,27 +42,33 @@ async function limparHistorico() {
 }
 // Chamar a função para limpar a tabela Historico quando o servidor é iniciado
 limparHistorico();
-
 // Rota para atualizar a vida do herói e do vilão
 app.post('/atualizarVida', async (req, res) => {
     const { vidaHeroi, vidaVilao } = req.body;
 
-    try {
-        await sql.connect(config);
-        const request = new sql.Request();
-        await request.query(`
-      MERGE INTO Personagens AS target
-      USING (VALUES ('heroi', ${vidaHeroi}), ('vilao', ${vidaVilao})) AS source (Nome, Vida)
-      ON target.Nome = source.Nome
-      WHEN MATCHED THEN
-        UPDATE SET Vida = source.Vida
-      WHEN NOT MATCHED THEN
-        INSERT (Nome, Vida) VALUES (source.Nome, source.Vida);
-      `);
-        res.status(200).send('Vida do herói e do vilão atualizada com sucesso.');
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Erro ao atualizar a vida do herói e do vilão.');
+    // Verifica se vidaHeroi e vidaVilao estão definidos e são números válidos
+    if (typeof vidaHeroi !== 'undefined' && typeof vidaVilao !== 'undefined' && !isNaN(vidaHeroi) && !isNaN(vidaVilao)) {
+        try {
+            await sql.connect(config);
+            const request = new sql.Request();
+            await request.query(`
+                MERGE INTO Personagens AS target
+                USING (VALUES ('heroi', ${vidaHeroi}), ('vilao', ${vidaVilao})) AS source (Nome, Vida)
+                ON target.Nome = source.Nome
+                WHEN MATCHED THEN
+                    UPDATE SET Vida = source.Vida
+                WHEN NOT MATCHED THEN
+                    INSERT (Nome, Vida) VALUES (source.Nome, source.Vida);
+            `);
+            res.status(200).send('Vida do herói e do vilão atualizada com sucesso.');
+        } catch (err) {
+            console.error('Erro ao atualizar a vida do herói e do vilão:', err);
+            res.status(500).send('Erro ao atualizar a vida do herói e do vilão.');
+        }
+    } else {
+        // Caso vidaHeroi ou vidaVilao sejam indefinidos ou não sejam números válidos
+        console.error('Erro ao atualizar a vida do herói e do vilão: vidaHeroi ou vidaVilao estão indefinidos ou não são números válidos.');
+        res.status(400).send('Erro ao atualizar a vida do herói e do vilão: vidaHeroi ou vidaVilao estão indefinidos ou não são números válidos.');
     }
 });
 // Rota para atualizar os dados do usuário
@@ -169,7 +175,7 @@ app.get('/historico', async (req, res) => {
         const result = await request.query("SELECT TOP 6 * FROM Historico ORDER BY id DESC ");
         const historico = result.recordset;
 
-        // Limpar apenas as informações da tabela
+         // Limpar apenas as informações da tabela
         ///await request.query("DELETE FROM Historico");
 
         res.json({ historico });
@@ -181,7 +187,7 @@ app.get('/historico', async (req, res) => {
 
 // Rota para servir o arquivo HTML principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'login.html'));
 });
 
 app.get('/dashboard', (req, res) => {
@@ -193,6 +199,7 @@ app.get('/login', (req, res) => {
 app.get('/index', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html'));
 });
+
 // Iniciar o servidor
 app.listen(PORT, () => {
     console.log(`Servidor Express rodando na porta ${PORT}`);
