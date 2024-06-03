@@ -64,6 +64,7 @@ app.get('/characters', async (req, res) => {
         res.status(500).json({ error: 'Erro ao buscar dados do herói e do vilão.' });
     }
 });
+
 // Rota para servir o arquivo HTML principal
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'index.html')); 
