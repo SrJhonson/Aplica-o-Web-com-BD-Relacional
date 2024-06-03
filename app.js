@@ -1,4 +1,3 @@
-// public/app.js
 const { createApp } = Vue;
 const API_URL = 'http://localhost:3000';
 
