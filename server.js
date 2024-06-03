@@ -66,7 +66,7 @@ app.get('/characters', async (req, res) => {
 });
 // Rota para servir o arquivo HTML principal
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html')); 
 });
 
 app.get('/dashboard', (req, res) => {
