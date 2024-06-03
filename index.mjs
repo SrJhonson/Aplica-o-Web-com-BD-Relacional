@@ -36,16 +36,16 @@ createApp({
             if (isHeroi) {
                 this.vilao.vida = this.vilao.vida > 5 ? this.vilao.vida - 10 : 0;
                 this.historico.push("Herói atacou. Vida do vilão: " + this.vilao.vida);
-                this.acao = "Herói atacou"; 
+                this.acao = "Herói atacou";
                 console.log("Herói atacou");
                 this.acaoVilao();
                 this.aux = 1;
                 this.atualizarVidaNoBancoDeDados(this.heroi.vida, this.vilao.vida);
-                
+
             } else {
-                this.mensagemAcao = "Vilão atacou"; 
+                this.mensagemAcao = "Vilão atacou";
                 this.historico.push("Vilão atacou. Vida do herói: " + this.heroi.vida);
-                this.historico.acao = "Vilão atacou"; 
+                this.historico.acao = "Vilão atacou";
                 console.log("Vilão atacou");
                 this.heroi.vida = this.heroi.vida > 5 ? this.heroi.vida - 10 : 0;
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
@@ -76,13 +76,13 @@ createApp({
                 console.log("Herói defendeu");
                 this.acaoVilao();
                 this.historico.push("Herói defendeu.");
-                this.acao = "Herói defendeu"; 
+                this.acao = "Herói defendeu";
             } else {
-                this.mensagemAcao = "Vilão defendeu"; 
+                this.mensagemAcao = "Vilão defendeu";
                 console.log("Vilão defendeu");
-                this.aux = 1; 
+                this.aux = 1;
                 this.historico.push("Vilão defendeu.");
-                this.acao = "Vilão defendeu"; 
+                this.acao = "Vilão defendeu";
             }
             this.adicionarHistorico(acao);
             this.verificarVida();
@@ -90,7 +90,7 @@ createApp({
         usarPocao(isHeroi) {
             let acao = isHeroi ? "Herói usou poção" : "Vilão usou poção";
             if (isHeroi) {
-                this.acao = "Herói usou poção"; 
+                this.acao = "Herói usou poção";
                 console.log("Herói usou poção");
                 this.heroi.vida = this.heroi.vida < 95 ? this.heroi.vida + 5 : 100;
                 this.aux = 1;
@@ -98,8 +98,8 @@ createApp({
                 this.historico.push("Herói usou poção. Vida do herói: " + this.heroi.vida);
                 this.atualizarVidaNoBancoDeDados(this.heroi.vida, this.vilao.vida);
             } else {
-                this.mensagemAcao = "Vilão usou poção"; 
-                this.acao = "Vilão usou poção"; 
+                this.mensagemAcao = "Vilão usou poção";
+                this.acao = "Vilão usou poção";
                 console.log("Vilão usou poção");
                 this.vilao.vida = this.vilao.vida < 95 ? this.vilao.vida + 5 : 100;
                 this.historico.push("Vilão usou poção. Vida do vilão: " + this.vilao.vida);
@@ -177,5 +177,4 @@ createApp({
             }
         }
     }
-}
-).mount("#app");
+}).mount("#app");
