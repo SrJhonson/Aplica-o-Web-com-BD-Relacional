@@ -4,16 +4,15 @@
   "description": "Uma aplicação web com banco de dados relacional",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "build": "echo 'Build script here'"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "keywords": [],
+  "author": "Feito por Jhonatan",
+  "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.19.2",
     "mssql": "^10.0.2",
     "vue": "^3.4.27"
-  },
-  "keywords": [],
-  "author": "Feito por Jhonatan",
-  "license": "ISC"
+  }
 }
