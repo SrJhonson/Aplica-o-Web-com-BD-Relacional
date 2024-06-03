@@ -1,5 +1,5 @@
 const { createApp } = Vue;
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://aplica-o-web-com-bd-relacional.onrender.com/';
 
 createApp({
     data() {
