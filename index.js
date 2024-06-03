@@ -1,4 +1,5 @@
-const { createApp } = Vue;
+import { createApp } from 'vue';
+
 const API_URL = 'https://aplica-o-web-com-bd-relacional.onrender.com';
 
 createApp({
