@@ -4,10 +4,11 @@
     "description": "Uma aplicação web com banco de dados relacional",
     "main": "index.js",
     "scripts": {
-      "start": "node index.js",
-      "build": "echo 'Build script here'"
+        "start": "node index.js",
+        "build": "echo 'Build script here'"
     },
-    "dependencies": {},
-    "devDependencies": {}
-  }
-  
+    "dependencies": {
+        "express": "^4.19.2",
+        "mssql": "^10.0.2"
+    }
+}
