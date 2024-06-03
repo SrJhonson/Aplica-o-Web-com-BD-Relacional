@@ -6,7 +6,7 @@ createApp({
         return {
             heroi: { vida: 100 },
             vilao: { vida: 100 },
-            logs: [],
+            historico: [],
             acao: ''
         }
     },
@@ -27,14 +27,14 @@ createApp({
         }
     },
     methods: {
-        adicionarLog(log) {
-            if (this.logs.length >= 20) {
-                this.logs.shift();
+        adicionarLog(Historico) {
+            if (this.Historico.length >= 20) {
+                this.Historico.shift();
             }
-            this.logs.push(log);
+            this.Historico.push(Historico);
         },
         limparLogs() {
-            this.logs = [];
+            this.Historico = [];
         },
         atacar(isHeroi) {
             if (isHeroi) {

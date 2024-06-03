@@ -21,13 +21,14 @@
             </div>
         </div>
     </div>
-    <div class="personagem">
-        <div>
-            <h2>Historio de Ação</h2>
-            <ul>
-                <li v-for="log in logs">{{ log }}</li>
-            </ul>
-        </div>
+    <div>
+        <h3>Histórico de Ações</h3>
+        <ul id="historico-list" class="historico-list">
+        <p> Última ação</p>
+            <li v-for="(acao, index) in historico" :key="acao.id">
+                {{ acao.acao }}
+            </li>
+        </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script>
@@ -36,7 +37,7 @@
             data: {
                 heroiVida: '',
                 vilaoVida: '',
-                log: []
+                historico: []
             },
             mounted() {
                 this.fetchCharacterData();

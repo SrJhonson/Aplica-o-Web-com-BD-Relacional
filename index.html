@@ -22,13 +22,14 @@
             </div>
         </div>
         <div class="personagem">
-            <div>
-                <h2>Historio de Ação</h2>
-                <ul>
-                    <li v-for="log in logs">{{ log }}</li>
+            <div id="historico">
+                <h3>Histórico de Ações</h3>
+                <ul id="historico-list" class="historico-list">
+                    <li v-for="(acao, index) in historico" :key="index">
+                        {{ acao }}
+                    </li>
                 </ul>
             </div>
-        </div>
         <div class="personagem">
             <div class="barra-vida" :class="vilaoVidaClasse" :style="{width: vilao.vida + '%'}">{{ vilao.vida }}%</div>
             <div class="sprite"><img src="img/vilao.jpg" alt="Figura do personagem"></div>
