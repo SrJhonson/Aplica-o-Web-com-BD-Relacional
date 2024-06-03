@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="login.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&display=swap');
+    </style>
+</head>
+
+<body>
+    <div id="app">
+        <div class="intro">
+            <div class="box">
+                <div class="nome">
+                    {{ buttonTextPrefix }}
+                    <button @click="alterarComponentes" class="botao">{{ buttonText }}</button>
+                </div><!--nome-->
+                <transition name="fade" mode="out-in">
+                    <component :is="componenteAtual"></component>
+                </transition>
+
+            </div><!--box-->
+        </div>
+    </div><!--app-->
+
+
+<script src="login.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            nome: '',
+            email: '',
+            senha: ''
+        },
+        methods: {
+            async atualizarUsuario() {
+                try {
+                    const response = await fetch('https://aplica-o-web-com-bd-relacional.onrender.com/atualizarUsuario', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            nome: this.nome,
+                            email: this.email,
+                            senha: this.senha
+                        })
+                    });
+                    if (response.ok) {
+                        alert('Dados do usuário atualizados com sucesso.');
+                    } else {
+                        alert('Erro ao atualizar dados do usuário.');
+                    }
+                } catch (error) {
+                    console.error('Erro ao atualizar dados do usuário:', error);
+                    alert('Erro ao atualizar dados do usuário.');
+                }
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>

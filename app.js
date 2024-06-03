@@ -6,7 +6,8 @@ createApp({
         return {
             heroi: { vida: 100 },
             vilao: { vida: 100 },
-            logs: []
+            logs: [],
+            acao: ''
         }
     },
     computed: {
@@ -51,6 +52,7 @@ createApp({
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
             }
             this.verificarVida();
+            this.adicionarHistorico(acao);
         },
         async atualizarVidaNoBancoDeDados(vidaHeroi, vidaVilao) {
             try {
@@ -80,6 +82,7 @@ createApp({
                 this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
             }
             this.verificarVida();
+            this.adicionarHistorico(acao);
         },
         usarPocao(isHeroi) {
             // Recupera 15 de vida do herói
@@ -106,6 +109,7 @@ createApp({
                 }
             }
             this.verificarVida();
+            this.adicionarHistorico(acao);
         },
         critico(isHeroi) {
             // Ataque crítico que causa o dobro do dano do ataque normal
@@ -121,6 +125,7 @@ createApp({
                 }
             }
             this.verificarVida();
+            this.adicionarHistorico(acao);
         },
         acaoVilao() {
             const acoes = ['atacar', 'defender', 'usarPocao', 'critico'];
@@ -148,6 +153,24 @@ createApp({
             this.heroi.vida = 100;
             this.vilao.vida = 100;
             this.atualizarVidaNoBancoDeDados(this.vilao.vida, this.heroi.vida);
+        },
+        async adicionarHistorico(acao) {
+            try {
+                //let acao = this.acao;
+                const response = await fetch(`${API_URL}/adicionarHistorico`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ acao })
+                });
+                if (!response.ok) {
+                    throw new Error('Erro ao atualizar o historico no banco de dados.');
+                }
+                console.log('Historico atualizados com sucesso.');
+            } catch (error) {
+                console.error('Erro ao atualizar o historico no banco de dados:', error);
+            }
         }
     }
 }
