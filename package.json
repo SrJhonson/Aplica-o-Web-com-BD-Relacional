@@ -1,0 +1,13 @@
+{
+    "name": "aplicacao-web-com-bd-relacional",
+    "version": "1.0.0",
+    "description": "Uma aplicação web com banco de dados relacional",
+    "main": "index.js",
+    "scripts": {
+      "start": "node index.js",
+      "build": "echo 'Build script here'"
+    },
+    "dependencies": {},
+    "devDependencies": {}
+  }
+  
