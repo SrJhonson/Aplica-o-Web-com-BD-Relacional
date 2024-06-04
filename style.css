@@ -1,168 +1,92 @@
-body, html{
+body,
+html {
     height: 100%;
     margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #16cccc;
 }
-#fundo{
-    background-image: url("/img/fundo.jpg");
-    background-size: cover; /* faz a imagem cobrir todo o fundo */
-    background-position: center; /* centraliza a imagem */
-    background-repeat: no-repeat; /* evita a repetição da imagem */
-    
+
+ul{
+    list-style-type: none;
+    padding: 0;
 }
+
 #app {
-    width: 80%;
-    margin: 0 auto; /* Centraliza o contêiner na página */
+    width: 100%;
+    max-width: 1000px;
+    text-align: center;
     display: flex;
-    gap: 20px; /* Espaçamento entre as colunas */
-    justify-content: space-between;
-    align-items: center;
-    flex-direction:row;
+    flex-direction: row;
 }
 
-.historicoContainer {
-    display: flex; /* Usa flexbox para centralizar o conteúdo */
-    justify-content: center; /* Centraliza horizontalmente */
-    max-height: 415px; /* Defina a altura máxima desejada para o contêiner */
-}
-
-.personagem-container {
-    display: flex; /* Alterado para flex para colocar os personagens lado a lado */
-    justify-content: space-between; /* Distribui os personagens igualmente nas colunas */
-    gap: 20px;
-}
-
-.personagem{
-    border-radius: 5px;
-    margin-top: 20px;
+.personagem {
+    background-color: white;
+    border: 2px solid #590f68;
+    margin-bottom: 20px;
+    margin: 10px;
     padding: 10px;
-    width: 200px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease;
-
+    border-radius: 5px;
+    width: 300px;
+    height: 500px;
 }
 
-
-.personagem:hover {
-    transform: translateY(-5px);
-}
-
-#heroi{
-    background-color: rgba(163, 180, 236, 97%);
-}
-#vilao{
-    background-color: rgba(134, 18, 18, 0.94);;
-}
-.acoes{
+.acoes {
     display: grid;
-    grid-template-columns: repeat(2,1fr);
-    gap:8px;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 10px;
 }
-#botao{
-    padding: 15px;
-    font-size: 15px;
-    border: none;
-    border-radius: 5px;
-    background-color: rgb(0, 255, 255);
-    color: rgb(0, 0, 0);
-    cursor: pointer;
-    transition: background-color 0.3s, transform 0.2s;
-}
+
 button {
-    padding: 8px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
-    background-color: mediumpurple;
-    color: antiquewhite;
+    background-color: #761d9f;
+    color: whitesmoke;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
 
-button:hover{
-    background-color: lightpink;
-    transform: translate(-3px);
+button:hover {
+    background-color: #1a355e;
 }
 
-button:active{
-    transform: translateY(0px);
+button:active {
+    transform: translateY(2px);
 }
 
-.barra-vida{
+.barra-vida {
     height: 32px;
+    background-color: #36e43c;
+    color: rgb(255, 255, 255);
     display: flex;
-    justify-content: center;
     align-items: center;
-    color:rgb(250, 250, 250);
-    font-weight: 500;
+    justify-content: center;
     border-radius: 5px;
     margin-bottom: 16px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-.barra-vida.alta {
-    background: linear-gradient(to right, #00b09b, #96c93d);
 }
 
-.barra-vida.media {
-    color: #717171;
-    background: linear-gradient(to right, #e3f52c,#fafe9b);
+.sprite {
+    height: 200px;
+    margin-bottom: 20px;
+    border-radius: 5px;
 }
 
-.barra-vida.baixa {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
+img {
+    width: 200px;
+    height: 200px;
+    border-radius: 5%;
 }
 
-
-.sprite{
-    height: 160px;
-    background-color: #ddd;
+.vida-vermelha {
+    background-color: red;
 }
 
-#img{
-        border: 1px solid #ccc; 
-        width: 100%; 
-        height: 100%;
-        object-fit: cover;
-        border-radius: 5px;
-}
-.h-heroi{
-    font-family: Lucida Handwriting, cursive;
-    color: rgb(235, 71, 188);
-}
-.h-vilao{
-    font-family: Papyrus, fantasy;
-    color: rgb(0,0,0);
-}
-.mensagem{
-    color: rgb(224,2,2,1);
-    text-align:center;
-    font-family: 'Bloody', cursive;
-    font-size: 20px;
-}
-#historico{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-end;
-    justify-content: space-between;
-    background-color: #a5dde1;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    color: rgb(41, 41, 165);
-    overflow-y: auto; /* Adiciona barra de rolagem vertical quando necessário */
-    max-height: 550px; /* Defina a altura máxima desejada para o contêiner */
-    width: 300px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-
-}
-.historico-list {
-    margin: 0; /* Remove as margens padrão da lista */
+.vida-amarela {
+    background-color: rgb(228, 228, 45);
 }
 
-.historico-list li {
-    margin-bottom: 5px; /* Adiciona um espaçamento entre os itens da lista */
-}
-
-.historico-list li:last-child {
-    margin-bottom: 20px; /* Adiciona uma margem inferior ao último item da lista */
+.vida-verde {
+    background-color: #36e43c;
 }

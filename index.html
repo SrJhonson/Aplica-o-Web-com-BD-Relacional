@@ -1,58 +1,42 @@
 <!DOCTYPE html>
-<html lang="pt-br" id="fundo">
+<html lang="pt-br">
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prova - Herói e vilão</title>
+    <title>Prova - Jogo Herói e Vilão</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="index.mjs"></script>
 </head>
 
 <body>
     <div id="app">
-        <div class="personagem-container">
-            <div id="heroi" class="personagem">
-                <div class="barra-vida" :class="vidaCor(heroi.vida)"
-                    :style="{ width: (heroi.vida < 0 ? 0 : (heroi.vida > 100 ? 100 : heroi.vida)) + '%' }">
-                    {{ heroi.vida }} </div>
-
-                <div class="sprite"><img id="img" src="/img/img1.jpg" alt="" srcset=""></div><!--sprite-->
-                <h1 class="h-heroi"> Betty Atômica </h1>
-                <div class="acoes">
-                    <button @click="atacar(true)">Atacar </button>
-                    <button @click="defender(true)">Defender</button>
-                    <button @click="usarPocao(true)">Usar poção </button>
-                    <button id="correr" @click="correr(true)">Correr </button>
-                </div><!--acoes-->
-            </div><!--personagem-->
-
-            <div id="vilao" class="personagem">
-                <div class="barra-vida" :class="vidaCor(vilao.vida)"
-                    :style="{ width: (vilao.vida < 0 ? 0 : (vilao.vida > 100 ? 100 : vilao.vida)) + '%' }">
-                    {{ vilao.vida }} </div>
-                <div class="sprite"><img id="img" src="/img/img2.jpg" alt="" srcset=""></div><!--sprite-->
-                <h1 class="h-vilao">Black Hat </h1>
-                <div class="mensagem">{{ mensagemAcao }}</div><!-- mensagem da ação -->
-            </div><!--personagem-->
+        <div class="personagem">
+            <div class="barra-vida" :class="heroiVidaClasse" :style="{width: heroi.vida + '%'}">{{ heroi.vida }}%</div>
+            <div class="sprite"><img src="img/heroi.jpg" alt="Figura do personagem"></div>
+            <h1>Herói</h1>
+            <div class="acoes">
+                <button @click="atacar(true)">Atacar</button>
+                <button @click="defender(true)">Defender</button>
+                <button @click="usarPocao(true)">Usar Poção</button>
+                <button @click="critico(true)">Critíco</button>
+            </div>
         </div>
-        <div class="historicoContainer">
-            <div id="historico">
-                <h3>Histórico de Ações</h3>
-                <ul id="historico-list" class="historico-list">
-                    <li v-for="(acao, index) in historico" :key="index">
-                        {{ acao }}
-                    </li>
+        <div class="personagem">
+            <div>
+                <h2>Historio de Ação</h2>
+                <ul>
+                    <li v-for="(acao, index) in historico" :key="index">{{ acao }}</li>
                 </ul>
             </div>
-
         </div>
-
-        <button id="botao" onclick="window.open('dashboard.html','_blank')">Dashboard</button>
-        <button id="botao" onclick="window.open('login.html','_blank')">Sair</button>
-    </div><!--app-->
-
-    <script type="module" src="index.js"></script>
+        <div class="personagem">
+            <div class="barra-vida" :class="vilaoVidaClasse" :style="{width: vilao.vida + '%'}">{{ vilao.vida }}%</div>
+            <div class="sprite"><img src="img/vilao.jpg" alt="Figura do personagem"></div>
+            <h1>Vilão</h1>
+            <button onclick="window.open('dashboard.html','_blank')">Dashboard</button>
+        </div>
+    </div>
 </body>
 
 </html>

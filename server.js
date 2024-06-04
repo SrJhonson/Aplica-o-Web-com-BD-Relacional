@@ -2,35 +2,32 @@ const express = require('express');
 const path = require('path');
 const sql = require('mssql');
 
-
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware para habilitar o CORS
+// Middleware for CORS
 app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', '*'); // Permitindo acesso de qualquer origem
-    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE'); // Métodos permitidos
-    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization'); // Cabeçalhos permitidos
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     next();
 });
 
-// Configuração do banco de dados
+// Database configuration
 const config = {
-    user: "Administrador",
+    user: 'Administrador',
     password: '9512468@.J',
-    server: "its-brazuca-man.database.windows.net",
-    database: "fatec-projeto",
+    server: 'its-brazuca-man.database.windows.net',
+    database: 'fatec-projeto',
     options: {
-        encrypt: true // Dependendo da configuração do seu servidor SQL Server
+        encrypt: true
     }
 };
 
 app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Servir arquivos estáticos (como index.html)
-app.use(express.static(path.join(__dirname)));
-
-// Limpar a tabela Historico quando o servidor é iniciado
+// Clean the history table when the server starts
 async function limparHistorico() {
     try {
         const pool = await sql.connect(config);
@@ -41,13 +38,11 @@ async function limparHistorico() {
         console.error('Erro ao limpar a tabela Historico:', error);
     }
 }
-// Chamar a função para limpar a tabela Historico quando o servidor é iniciado
 limparHistorico();
 // Rota para atualizar a vida do herói e do vilão
 app.post('/atualizarVida', async (req, res) => {
     const { vidaHeroi, vidaVilao } = req.body;
 
-    // Verifica se vidaHeroi e vidaVilao estão definidos e são números válidos
     if (typeof vidaHeroi !== 'undefined' && typeof vidaVilao !== 'undefined' && !isNaN(vidaHeroi) && !isNaN(vidaVilao)) {
         try {
             await sql.connect(config);
@@ -67,7 +62,6 @@ app.post('/atualizarVida', async (req, res) => {
             res.status(500).send('Erro ao atualizar a vida do herói e do vilão.');
         }
     } else {
-        // Caso vidaHeroi ou vidaVilao sejam indefinidos ou não sejam números válidos
         console.error('Erro ao atualizar a vida do herói e do vilão: vidaHeroi ou vidaVilao estão indefinidos ou não são números válidos.');
         res.status(400).send('Erro ao atualizar a vida do herói e do vilão: vidaHeroi ou vidaVilao estão indefinidos ou não são números válidos.');
     }
@@ -124,6 +118,7 @@ app.post('/adicionarHistorico', async (req, res) => {
         res.status(400).send('Erro ao adicionar ação ao histórico: ação está indefinida.');
     }
 });
+
 // Rota para fornecer os dados do herói e do vilão
 app.get('/characters', async (req, res) => {
     try {
@@ -187,18 +182,14 @@ app.get('/historico', async (req, res) => {
 });
 
 // Rota para servir o arquivo HTML principal
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'login.html'));
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
-
 app.get('/dashboard', (req, res) => {
     res.sendFile(path.join(__dirname, 'dashboard.html'));
 });
 app.get('/login', (req, res) => {
     res.sendFile(path.join(__dirname, 'login.html'));
-});
-app.get('/index', (req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 // Iniciar o servidor
