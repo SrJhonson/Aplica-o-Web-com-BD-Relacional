@@ -1,6 +1,6 @@
 import { createApp } from 'vue';
 
-const API_URL = 'https://aplica-o-web-com-bd-relacional.onrender.com';
+const API_URL = 'http://localhost:3000';
 
 createApp({
     data() {

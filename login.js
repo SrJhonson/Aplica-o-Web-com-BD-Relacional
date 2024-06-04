@@ -17,7 +17,7 @@ const login = {
     methods: {
         async fazerLogin() {
             try {
-                const response = await fetch('https://aplica-o-web-com-bd-relacional.onrender.com/usuario', {
+                const response = await fetch('http://localhost:3000/usuario', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -62,7 +62,7 @@ const singin = {
     methods: {
         async criarConta() {
             try {
-                const response = await fetch('https://aplica-o-web-com-bd-relacional.onrender.com/atualizarUsuario', {
+                const response = await fetch('http://localhost:3000/atualizarUsuario', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
