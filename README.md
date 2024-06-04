@@ -104,7 +104,7 @@ encrypt: true // Dependendo da configuração do seu servidor SQL Server
 
        npm run serve
   
-3. Acesse o Jogo: Abra o navegador e acesse http://localhost:8080 para iniciar o jogo.
+3. Acesse o Jogo: Abra o navegador e acesse http://localhost:3000 para iniciar o jogo.
 
 <h3> 🎮 Uso </h3>
 
