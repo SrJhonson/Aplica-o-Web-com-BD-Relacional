@@ -117,25 +117,27 @@ encrypt: true // Dependendo da configuração do seu servidor SQL Server
 ### Tela inicial - tela de Login 
 | Tela   | Imagem                                                                                                  |
 |--------|---------------------------------------------------------------------------------------------------------|
-| Login  | <img src="" alt="login" width="700">  |
-| Sing In| <img src="" alt="singin" width="700"> |
+| Login  | <img src="https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/fbe06507-d3cf-4d66-87e2-5fd5cc548aa1" alt="login" width="700">  |
+| Sing In| <img src="https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/f4ee9507-93a6-4120-9bb0-36cbe8c54ed0" alt="singin" width="700"> |
 
 ### Tela do jogo 
-![tela principal]()
+![tela principal](https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/8cfa7ca0-4e63-45be-99df-d811681238ae)
 | Personagem | Herói | Vilão |
 |------------|-------|-------|
-| Imagem     | ![Herói]() | ![Vilão]() |
+| Imagem     | ![Herói](https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/926e975c-d415-4aaa-9bab-64ca79565c8a) | ![Vilão](https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/0a294c13-4e62-437a-afcf-a82a8dab8d2a) |
 
 ### Tela Dashboard 
 | Tela                               | Imagem                                                                                                   |
 |------------------------------------|----------------------------------------------------------------------------------------------------------|
-| Tela sem informação                | ![Tela sem informação]() |
-| Tela com informação                | ![Tela com informação]() |
+| Tela sem informação                | ![Tela sem informação](https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/88eb63b9-7612-49b4-8a4e-cfcf53c88e31) |
+| Tela com informação                | ![Tela com informação](https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/7ced0b0e-a5de-4c6b-86f6-878fcbcecd16) |
+
 
 ### Video do Site funcionando 
 
 
 
+https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional/assets/101840801/08bcf635-9e1c-4fd6-876e-25df7eac2b2b
 
 
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
