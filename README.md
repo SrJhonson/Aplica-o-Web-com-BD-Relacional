@@ -68,10 +68,10 @@ O Jogo Herói e Vilão é uma aplicação web que simula uma batalha entre um he
 <h3> ⚙️  Instalação de Dependências </h3>
 1. Clone o Repositório: Faça uma cópia do repositório para o seu ambiente local.
 
-      git clone https://github.com/ellendias01/Prova-Marcio.git
+      git clone https://github.com/SrJhonson/Aplica-o-Web-com-BD-Relacional
 2. Navegue até o Diretório do Projeto: Acesse o diretório do projeto recém-clonado.
 
-       cd Prova-Marcio
+       cd Aplica-o-Web-com-BD-Relacional
 3. Instale as Dependências do Frontend: Navegue até o diretório do frontend e instale as dependências.
 
        cd frontend
