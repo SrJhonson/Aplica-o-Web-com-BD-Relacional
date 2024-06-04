@@ -1,5 +1,4 @@
-import { createApp } from 'vue';
-
+const { createApp } = Vue;
 const API_URL = 'http://localhost:3000';
 
 createApp({
