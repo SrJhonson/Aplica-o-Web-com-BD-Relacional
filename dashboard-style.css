@@ -41,3 +41,6 @@ h2 {
 #vilaoVida {
     font-size: 18px;
 }
+#historico-list li:nth-child(odd) {
+    margin-bottom: 10px; /* Ajuste conforme necessário */
+}
