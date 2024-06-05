@@ -15,10 +15,10 @@ app.use((req, res, next) => {
 
 // Database configuration
 const config = {
-    user: 'Administrador',
-    password: '9512468@.J',
-    server: 'its-brazuca-man.database.windows.net',
-    database: 'fatec-projeto',
+    user: '',
+    password: '',
+    server: '',
+    database: '',
     options: {
         encrypt: true
     }
